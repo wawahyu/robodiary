@@ -292,7 +292,7 @@ class Tablist extends StatelessWidget {
           ),
         ),
         onTap: () {
-          Navigator.pushNamed(context, '/detail/' + diary.id);
+          Navigator.pushNamed(context, '/detail/' + diary.id, arguments: diary);
         },
       ),
     );
