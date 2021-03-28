@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "356877007327",
+    "project_id": "robot-diaries",
+    "storage_bucket": "robot-diaries.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356877007327:android:dbe612fd8da9f147842c6a",
+        "android_client_info": {
+          "package_name": "id.neddi.robotdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356877007327-mghhoohm1r6jtovdfsnp3vsmg9pti8ig.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEX8eGf9Dnjvvys2jAB55Kk-KhDsST8KA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356877007327-mghhoohm1r6jtovdfsnp3vsmg9pti8ig.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
