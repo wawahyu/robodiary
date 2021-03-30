@@ -1,11 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:onigirydiary/halamanhome.dart';
-import 'package:onigirydiary/halamanlistdetail.dart';
-import 'package:onigirydiary/halamansplash.dart';
-import 'package:onigirydiary/modeldiary.dart';
+import 'package:onigirydiary/screens/halamanhome.dart';
+import 'package:onigirydiary/screens/diary/halamanlistdetail.dart';
+import 'package:onigirydiary/screens/halamansplash.dart';
+import 'package:onigirydiary/models/modeldiary.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +37,10 @@ class MyApp extends StatelessWidget {
             settings.arguments is ModelDiary) {
           var id = uri.pathSegments[1];
           return MaterialPageRoute(
-              builder: (context) => Halamanlistdetail(id: int.tryParse(id), diary: settings.arguments,));
+              builder: (context) => Halamanlistdetail(
+                    id: int.tryParse(id),
+                    diary: settings.arguments,
+                  ));
         }
         return MaterialPageRoute(builder: (context) => Container());
       },

@@ -8,16 +8,14 @@ class Halamansplash extends StatefulWidget {
 }
 
 class _HalamansplashState extends State<Halamansplash> {
-  
-  startTimer()async{
+  startTimer() async {
     var _durasi = Duration(seconds: 2);
     return Timer(_durasi, pindahHalamanHome);
   }
 
-  void pindahHalamanHome(){
+  void pindahHalamanHome() {
     Navigator.pushReplacementNamed(context, 'home');
   }
-  
 
   @override
   void initState() {
@@ -33,10 +31,10 @@ class _HalamansplashState extends State<Halamansplash> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              image: AssetImage('images/192.png'),
-              width: 200,
-            ),
+            //   Image(
+            //     image: AssetImage('images/192.png'),
+            //     width: 200,
+            //   ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -50,16 +48,18 @@ class _HalamansplashState extends State<Halamansplash> {
                 ),
               ],
             ),
+            SizedBox(height: 20),
+            CircularProgressIndicator()
           ],
         ),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-              'images/192.png',
-            ),
-            fit: BoxFit.fill,
-          ),
-        ),
+        // decoration: BoxDecoration(
+        //   image: DecorationImage(
+        //     image: AssetImage(
+        //       'images/192.png',
+        //     ),
+        //     fit: BoxFit.fill,
+        //   ),
+        // ),
       ),
     );
   }

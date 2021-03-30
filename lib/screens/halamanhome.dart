@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:onigirydiary/tabhelp.dart';
-import 'package:onigirydiary/tablist.dart';
+import 'package:onigirydiary/screens/diary/halamantambah.dart';
+import 'package:onigirydiary/screens/help/tabhelp.dart';
+import 'package:onigirydiary/screens/diary/tablist.dart';
 
 class Halamanhome extends StatefulWidget {
   @override
@@ -43,6 +44,14 @@ class _HalamanhomeState extends State<Halamanhome> {
       appBar: AppBar(
         backgroundColor: const Color(0xffffdede),
         title: Image.asset("images/192.png", height: 48),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => HalamanTambahDiary(),
+          ),
+        ),
       ),
       body: PageView(
         children: [

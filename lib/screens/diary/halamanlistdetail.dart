@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:onigirydiary/modeldiary.dart';
+import 'package:onigirydiary/models/modeldiary.dart';
 
 class Halamanlistdetail extends StatelessWidget {
   final int id;

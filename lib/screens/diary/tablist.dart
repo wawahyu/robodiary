@@ -1,19 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:onigirydiary/modeldiary.dart';
+import 'package:onigirydiary/databases/diaries_database.dart';
+import 'package:onigirydiary/models/modeldiary.dart';
+import 'package:onigirydiary/screens/diary/halamanedit.dart';
 
 class Tablist extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('diaries').snapshots(),
+      stream: DiariesDatabase().streamDiaries(),
       builder: _asyncSnapshot,
     );
-    return FutureBuilder<QuerySnapshot>(
-      future: FirebaseFirestore.instance.collection('diaries').get(),
-      builder: _asyncSnapshot,
-    );
+    // return FutureBuilder<QuerySnapshot>(
+    //   future: FirebaseFirestore.instance.collection('diaries').get(),
+    //   builder: _asyncSnapshot,
+    // );
   }
 
   Widget _asyncSnapshot(
@@ -36,6 +38,7 @@ class Tablist extends StatelessWidget {
 
   Widget _getListdiary(BuildContext context, List<DocumentSnapshot> diaries) {
     return ListView.builder(
+      padding: EdgeInsets.all(16.0),
       itemCount: diaries.length,
       itemBuilder: (context, index) {
         ModelDiary diary = ModelDiary.fromDocumentSnapshot(diaries[index]);
@@ -284,6 +287,47 @@ class Tablist extends StatelessWidget {
                           ),
                         ],
                       ),
+                      Row(
+                        children: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => HalamanEditDiary(diary),
+                              ),
+                            ),
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.blue,
+                              primary: Colors.black,
+                            ),
+                            child: Text(
+                              'Edit',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 32.0,
+                          ),
+                          TextButton(
+                            onPressed: () => konfirmasiDialog(
+                              context,
+                              'Apakah anda yakin akan menghapus ini?',
+                              diary.id,
+                            ),
+                            style: TextButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              primary: Colors.black,
+                            ),
+                            child: Text(
+                              'Hapus',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -295,6 +339,36 @@ class Tablist extends StatelessWidget {
           Navigator.pushNamed(context, '/detail/' + diary.id, arguments: diary);
         },
       ),
+    );
+  }
+
+  void konfirmasiDialog(BuildContext context, String message, String id) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text("Perhatian"),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () => DiariesDatabase(docId: id)
+                  .deleteDiary()
+                  .then((_) => Navigator.of(context).pop()),
+            ),
+            TextButton(
+              child: Text(
+                "Baltal",
+                style: TextStyle(color: Colors.red),
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      },
     );
   }
 }
